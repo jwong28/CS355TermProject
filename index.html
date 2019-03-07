@@ -7,38 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Course
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">
+                            Zybook
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Browser
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Window</a>
+                        <a class="dropdown-item" href="#">Screen</a>
+                        <a class="dropdown-item" href="#">Location</a>
+                        <a class="dropdown-item" href="#">GeoLocation</a>
+                    </div>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
-            <span class="col-md-2 col-lg-2">
-                <h1>
-                    <a href="">
-                    Course
-                    </a>
-                </h1>
-            </span>
-            <span class="col-md-6 col-lg-6" id="search">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </span>
-            <span class="col-md-2 col-lg-2">
-                <h1>
-                    <a href="">
-                    Browser
-                    </a>
-                </h1>
-            </span>
-            <span class="col-md-2 col-lg-2">
-                <div class="dropdown">
-                    <button class="aboutBtn">About</button>
-                    <div class="dropdown-content">
-                      <a href="/about.html">About us</a>
-                      <a href="/contact.html">Contact us</a>
+            <span class="col-md-1 col-lg-1"></span>
+            <span class="col-md-9 col-lg-9">
+                <form>
+                    <div class="active-purple-3 active-purple-4 mb-4">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        </div>
                     </div>
-                  </div>
+                </form>
             </span>
+            <span class="col-md-1 col-lg-1"></span>
+            <span class="col-md-1 col-lg-1"></span>
         </div>
     </div>
 </body>
