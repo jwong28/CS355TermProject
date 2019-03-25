@@ -146,70 +146,31 @@
                 url:"upload.php",
                 method: "POST",
                 data: new FormData(this),
-                datatype: "json",
+                // datatype: "json",
                 contentType: false,
                 cache: false,
                 processData: false, 
                 success: function(data){
                     console.log(data);
-                    // var table = $("searchResults");
-                    // var results = [];
-                    // results = data;
-                    // console.log("getting results in ajax");
-                    // console.log(results);
-                    // for(var i = 0; i<data.length; i++){
-                    //     console.log("array value "+ i + " : "+ data[i]);
-                    // }
-                    // console.log(table);
-                    // $.each(data, function(a,b){
-                    //     table.append("<tr><td>"+"Hello"+"</td></tr>");
-                    // });
-                    // console.log("json");
-                    // newObj = JSON.stringify(data);
-                    // console.log(newObj);
-                    // for(x in newObj){
-                    //     console.log(x);
-                    // }
-                    // console.log(JSON.stringify(data));
-                    // console.log("data size "+ data.length);
-                    // console.log(data.resultingList);
-                    var response= jQuery.parseJSON(data);
-                    // if(typeof response == 'object'){
-                    //     console.log(response);
-                    // }
-                    // else{
-                    //     if(response === false){
-                    //         console.log("response isn't json");
-                    //     }
-                    //     else{
-                    //         console.log("response is something else");
-                    //     }
-                    // }
-                    console.log(response);
-                    // console.log(response.length);
-                //     <tr>
-                //     <td>
-                //         <a class="results" href="https://www.thrillist.com/eat/new-york/essential-nyc-food-bucket-listm">
-                //             Must try places in NYC
-                //         </a>
-                //         <p>50 different places and restaurants, bringing a huge variety of dishes.</p>
-                //         <span id="spanning"></span>
-                //     </td>
-                // </tr>
-                    table = document.getElementById("searchResults");
-                    var data = '';
-                    for(var i=0; i<response.length; i++){
-                        data += '<tr>';
-                        data+= '<td>';
-                        data+= '<a class="results" href="' + response[i][1]+'">';
-                        data+= response[i][0];
-                        data+='</a>';
-                        data+='<p>'+response[i][2]+'</p';
-                        data+='</td>';
-                        data +='</tr>';
+                    if(data === "No file selected"){
+                        alert(data);
                     }
-                    console.log(data);
-                    $("#searchResults").append(data);
+                    var response= jQuery.parseJSON(data);
+                    console.log(response);
+                    // table = document.getElementById("searchResults");
+                    // table.innerHTML = "";
+                    // var data = '';
+                    // for(var i=0; i<response.length; i++){
+                    //     data += '<tr>';
+                    //     data+= '<td>';
+                    //     data+= '<a class="results" href="' + response[i][1]+'">';
+                    //     data+= response[i][0];
+                    //     data+='</a>';
+                    //     data+='<p>'+response[i][2]+'</p';
+                    //     data+='</td>';
+                    //     data +='</tr>';
+                    // }
+                    // $("#searchResults").append(data);
 
                 }
             })

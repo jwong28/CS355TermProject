@@ -1,4 +1,6 @@
 <?php
+//  text/xml
+//  application/json
     $results = [];
     $val = 0;
    if ( isset($_FILES["file"])) {
@@ -57,31 +59,46 @@
         // echo $path_parts;
         // echo $path_parts;
         // print_r($path_parts);
-        // if($_FILES["file"]["type"] == 'application/vnd.ms-excel'){
+        if($_FILES["file"]["type"] == 'application/vnd.ms-excel'){
             $file_data = fopen($_FILES["file"]["tmp_name"], "r");
-            // fgetcsv($file_data);
             while($row = fgetcsv($file_data)){
-                // print_r($row);
-                // print_r($row.array[0]);
-                // echo $row;
-                // $val++;
                 $results[] = $row;
             }
             fclose($file_data);
             $myJSON = json_encode($results);
             echo $myJSON;
-            // }
-         
-        } else {
-            echo "No file selected <br />";
-    // }
+        }
+        else if($_FILES["file"]["type"] == 'text/xml'){
+            $file_data = fopen($_FILES["file"]["tmp_name"], "r");
+            fclose($file_data);
+
+        }
+        else if($_FILES["file"]["type"] == 'application/json'){
+            $file_data = file_get_contents($_FILES["file"]["tmp_name"]);
+            $data = json_decode($file_data, true);
+
+            for($i=0; $i<count($data[Result]); $i++){$row = [];
+                $row = [$data[Result][$i]['title'], $data[Result][$i]['url'], $data[Result][$i]['description']];
+                $results[] = $row;
+            }
+            $myJSON = json_encode($results);
+            echo $myJSON;
+        }
+        else {
+            echo "File not xml, csv or json";
+        }
+        
+
    //  echo "print";
    // echo "row size ";
    // print_r($val);
    // print_r($results);
    // print json_encode(array("resultingList"=>$results));
   
-   }    
+   }  
+   else {
+    echo "No file selected";
+    }  
     //  echo "dump";
     //  var_dump($results);;
     //  echo "</pre>";
