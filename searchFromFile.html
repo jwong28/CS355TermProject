@@ -70,7 +70,7 @@
             <span class="col-md-1 col-lg-1"></span>
             <span class="col-md-9 col-lg-9">
                 <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
-                <form id=upload_csv method="post" enctype="multipart/form-data">
+                <form id=uploadFile method="post" enctype="multipart/form-data">
                     <div class="active-purple-3 active-purple-4 mb-4">
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Best foods in NYC" readonly>
@@ -138,7 +138,7 @@
     //     });
     // }
     $(document).ready(function(){
-        $('#upload_csv').on('submit',function(e){
+        $('#uploadFile').on('submit',function(e){
             var results = [];
             var i = 0;
             e.preventDefault();
@@ -146,31 +146,29 @@
                 url:"upload.php",
                 method: "POST",
                 data: new FormData(this),
-                // datatype: "json",
+                datatype: "json",
                 contentType: false,
                 cache: false,
                 processData: false, 
                 success: function(data){
-                    console.log(data);
                     if(data === "No file selected"){
                         alert(data);
                     }
                     var response= jQuery.parseJSON(data);
-                    console.log(response);
-                    // table = document.getElementById("searchResults");
-                    // table.innerHTML = "";
-                    // var data = '';
-                    // for(var i=0; i<response.length; i++){
-                    //     data += '<tr>';
-                    //     data+= '<td>';
-                    //     data+= '<a class="results" href="' + response[i][1]+'">';
-                    //     data+= response[i][0];
-                    //     data+='</a>';
-                    //     data+='<p>'+response[i][2]+'</p';
-                    //     data+='</td>';
-                    //     data +='</tr>';
-                    // }
-                    // $("#searchResults").append(data);
+                    table = document.getElementById("searchResults");
+                    table.innerHTML = "";
+                    var data = '';
+                    for(var i=0; i<response.length; i++){
+                        data += '<tr>';
+                        data+= '<td>';
+                        data+= '<a class="results" href="' + response[i][1]+'">';
+                        data+= response[i][0];
+                        data+='</a>';
+                        data+='<p>'+response[i][2]+'</p';
+                        data+='</td>';
+                        data +='</tr>';
+                    }
+                    $("#searchResults").append(data);
 
                 }
             })
