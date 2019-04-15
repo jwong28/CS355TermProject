@@ -6,11 +6,9 @@
     <title>Search Engine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="main.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -28,7 +26,7 @@
                         Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">
+                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">
                             Zybook
                         </a>
                     </div>
@@ -49,9 +47,11 @@
                         Browser
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="browser.html#Browser">Browser Information</a>
-                            <a class="dropdown-item" href="browser.html#System">System Information</a>
-                            <a class="dropdown-item" href="browser.html#Website">Website Information</a>
+                        <a class="dropdown-item" href="browser.html#Navigator">Navigator</a>
+                        <a class="dropdown-item" href="browser.html#Window">Window</a>
+                        <a class="dropdown-item" href="browser.html#Screen">Screen</a>
+                        <a class="dropdown-item" href="browser.html#Location">Location</a>
+                        <a class="dropdown-item" href="browser.html#GeoLocation">Geolocation</a>
                     </div>
                 </li>
                 <li claxss="nav-item dropdown">
@@ -78,14 +78,28 @@
                         <button onclick="onSubmit()" disabled style="margin-top:10px;">Search</button>
                     </div>
                 </form>
+                <!-- <form action="download.php" method="POST" id="download"> -->
+                    Check below all searches you wish to download:
+                    </br>
+                    <select name="fileFormats">
+                        <option value="CSV">CSV</option>
+                        <option value="JSON">JSON</option>
+                        <option value="XML">XML</option>
+                    </select>
+                    <input type="submit" id="Download" name="submit">
+                <!-- </form> -->
             </span>
             <!-- <span class="col-md-1 col-lg-1"></span>
             <span class="col-md-1 col-lg-1"></span> -->
         </div>
+
         <h3>Search Results:</h3>
         <table class="table table-bordered">
             <tbody>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.thrillist.com/eat/new-york/essential-nyc-food-bucket-listm">
                             Must try places in NYC
@@ -94,6 +108,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://ny.eater.com/maps/best-new-york-restaurants-38-map">
                             38 Different places
@@ -102,6 +119,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.tripadvisor.com/Restaurants-g60763-New_York_City_New_York.html">
                             Trip Advisor List
@@ -110,6 +130,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://sharedappetite.com/eat/top-10-foods-eat-nyc/">
                             10 Top foods in NYC
@@ -118,6 +141,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.foodnetwork.com/restaurants/photos/best-cheap-eats-restaurants-new-york">
                             Running low on money?
@@ -126,6 +152,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.timeout.com/newyork/restaurants/100-best-new-york-restaurants">
                            It's 2019!
@@ -134,6 +163,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.yelp.com/collection/RHOLshNSNRW7pSuvq9Fz9Q">
                             NYC food reviews
@@ -142,6 +174,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.tripsavvy.com/the-best-late-night-foods-in-manhattan-4142892">
                             Need a midnight snack?
@@ -150,6 +185,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://www.timeout.com/newyork/restaurants/best-restaurants-in-brooklyn">
                             Brooklyn foodie
@@ -158,6 +196,9 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="checkbox">
+                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                    </td>
                     <td>
                         <a class="results" href="https://ny.eater.com/maps/best-new-queens-restaurants-heatmap">
                             The melting pot of NYC
@@ -169,4 +210,5 @@
         </table>
     </div>
 </body>
+<script src="download.js"></script>
 </html>

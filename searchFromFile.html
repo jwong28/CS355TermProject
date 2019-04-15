@@ -27,7 +27,7 @@
                         Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">
+                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">
                             Zybook
                         </a>
                     </div>
@@ -48,9 +48,11 @@
                         Browser
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="browser.html#Browser">Browser Information</a>
-                            <a class="dropdown-item" href="browser.html#System">System Information</a>
-                            <a class="dropdown-item" href="browser.html#Website">Website Information</a>
+                        <a class="dropdown-item" href="browser.html#Navigator">Navigator</a>
+                        <a class="dropdown-item" href="browser.html#Window">Window</a>
+                        <a class="dropdown-item" href="browser.html#Screen">Screen</a>
+                        <a class="dropdown-item" href="browser.html#Location">Location</a>
+                        <a class="dropdown-item" href="browser.html#GeoLocation">Geolocation</a>
                     </div>
                 </li>
                 <li claxss="nav-item dropdown">
@@ -75,14 +77,40 @@
                             <input class="form-control" type="text" placeholder="Best foods in NYC" readonly>
                         </div> 
                     </div>
-                    Select image to upload:
+                    Select file to upload:
                     <input type="file" id="file" name="file">
+                    <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
+                    <input type="submit" value="Upload Image" name="submit">
+                </form>
+
+                <!-- <input type="file" id="file" name="file"> -->
+                <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
+                <!-- <input type="submit" name="upload" id="upload"> -->
                     <input type="submit" value="Upload Image" name="submit">
                 </form>
             </span>
         </div>
         <h3>Search Results:</h3>
         <table class="table table-bordered" id="searchResults">
+            <tbody>
+                <tr>
+                    <td>
+                        <a class="results" href="https://www.thrillist.com/eat/new-york/essential-nyc-food-bucket-listm">
+                            Must try places in NYC
+                        </a>
+                        <p>50 differ ent places and restaurants, bringing a huge variety of dishes.</p>
+                        <span id="spanning"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="results" href="https://www.foodnetwork.com/restaurants/photos/best-cheap-eats-restaurants-new-york">
+                            Running low on money?
+                        </a>
+                        <p>Look at the most affordable cheap eats in NYC!</p>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </body>
