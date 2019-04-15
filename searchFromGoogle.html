@@ -69,59 +69,44 @@
         <div class="row">
             <span class="col-md-1 col-lg-1"></span>
             <span class="col-md-9 col-lg-9">
+                <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
                 <form id=uploadFile method="post" enctype="multipart/form-data">
                     <div class="active-purple-3 active-purple-4 mb-4">
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Best foods in NYC" readonly>
                         </div> 
+                        <!-- <button onclick="upload.php"  style="margin-top:10px;">Upload</button> -->
                     </div>
                     Select image to upload:
                     <input type="file" id="file" name="file">
+                    <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
+
                     <input type="submit" value="Upload Image" name="submit">
                 </form>
+                <!-- <input type="file" id="file" name="file"> -->
+                <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
+                <!-- <input type="submit" name="upload" id="upload"> -->
+
             </span>
+            <!-- <span class="col-md-1 col-lg-1"></span>
+            <span class="col-md-1 col-lg-1"></span> -->
         </div>
         <h3>Search Results:</h3>
         <table class="table table-bordered" id="searchResults">
+            <tbody>
+                <tr>
+                    <td>
+                        <a class="results" href="https://www.thrillist.com/eat/new-york/essential-nyc-food-bucket-listm">
+                            Must try places in NYC
+                        </a>
+                        <p>50 different places and restaurants, bringing a huge variety of dishes.</p>
+                        <span id="spanning"></span>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </body>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#uploadFile').on('submit',function(e){
-            var results = [];
-            var i = 0;
-            e.preventDefault();
-            $.ajax({
-                url:"upload.php",
-                method: "POST",
-                data: new FormData(this),
-                datatype: "json",
-                contentType: false,
-                cache: false,
-                processData: false, 
-                success: function(data){
-                    if(data === "No file selected"){
-                        alert(data);
-                    }
-                    var response= jQuery.parseJSON(data);
-                    table = document.getElementById("searchResults");
-                    table.innerHTML = "";
-                    var data = '';
-                    for(var i=0; i<response.length; i++){
-                        data += '<tr>';
-                        data+= '<td>';
-                        data+= '<a class="results" href="' + response[i][1]+'">';
-                        data+= response[i][0];
-                        data+='</a>';
-                        data+='<p>'+response[i][2]+'</p';
-                        data+='</td>';
-                        data +='</tr>';
-                    }
-                    $("#searchResults").append(data);
-
-                }
-            })
-        });
-    })
+    
 </script>
