@@ -3,14 +3,18 @@ $(document).ready(function(){
     $(".checkbox").click(function(){
         var JSONInformation=[];
         if($('input[type="checkbox"]').prop("checked") == true){
-            JSONInformation.push({title:$(this).parent().next().eq(1).text(),
-                                  url:$(this).parent().next().eq(1).text(),
-                                  description:$(this).parent().next().eq(2).text()});                                          
+            var value = this.parentElement.childNodes[3];
+            var url = value.childNodes[1].href;
+            var title = value.childNodes[1].text.trim();
+            var description = value.childNodes[3].textContent;
+            // JSONInformation.push({title:$(this).parent().next().eq(1).text(),
+            //                       url:$(this).parent().next().eq(1).text(),
+            //                       description:$(this).parent().next().eq(2).text()});                                          
             // '{ "title" : "' + $(this).parent().next().eq(1).text() + 
             // '" ,"url" : "' + $(this).parent().next().eq(1).text() +
             // '" ,"description" : "' + $(this).parent().next().eq(2).text() +
             // '" }';
-            console.log(JSONInformation);
+            // console.log(JSONInformation);
         }
     });
 });
