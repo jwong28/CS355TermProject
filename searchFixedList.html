@@ -38,7 +38,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="searchFixedList.html">Fixed List</a>
                             <a class="dropdown-item" href="searchFromFile.html">From File</a>
-                            <a class="dropdown-item" href="#">Google API</a>
+                            <a class="dropdown-item" href="searchFromGoogle.html">Google API</a>
                             <a class="dropdown-item" href="#">Our Search Engine</a>
                         </div>
                     </li>
@@ -81,12 +81,14 @@
                 <!-- <form action="download.php" method="POST" id="download"> -->
                     Check below all searches you wish to download:
                     </br>
-                    <select name="fileFormats">
+                    <select id="fileFormats">
                         <option value="CSV">CSV</option>
                         <option value="JSON">JSON</option>
                         <option value="XML">XML</option>
                     </select>
-                    <input type="submit" id="Download" name="submit">
+                    <a id="Download" href="#" class="panel panel-default">
+                        <span class="panel-body">Download</span>
+                    </a>
                 <!-- </form> -->
             </span>
             <!-- <span class="col-md-1 col-lg-1"></span>
@@ -98,7 +100,7 @@
             <tbody>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.thrillist.com/eat/new-york/essential-nyc-food-bucket-listm">
@@ -109,7 +111,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://ny.eater.com/maps/best-new-york-restaurants-38-map">
@@ -120,7 +122,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.tripadvisor.com/Restaurants-g60763-New_York_City_New_York.html">
@@ -131,7 +133,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://sharedappetite.com/eat/top-10-foods-eat-nyc/">
@@ -142,7 +144,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.foodnetwork.com/restaurants/photos/best-cheap-eats-restaurants-new-york">
@@ -153,7 +155,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.timeout.com/newyork/restaurants/100-best-new-york-restaurants">
@@ -164,7 +166,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.yelp.com/collection/RHOLshNSNRW7pSuvq9Fz9Q">
@@ -175,7 +177,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.tripsavvy.com/the-best-late-night-foods-in-manhattan-4142892">
@@ -186,7 +188,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://www.timeout.com/newyork/restaurants/best-restaurants-in-brooklyn">
@@ -197,7 +199,7 @@
                 </tr>
                 <tr>
                     <td class="checkbox">
-                        <input type="checkbox" form="download" name="result[]" value="unchecked">
+                        <input type="checkbox" form="download">
                     </td>
                     <td>
                         <a class="results" href="https://ny.eater.com/maps/best-new-queens-restaurants-heatmap">
