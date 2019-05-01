@@ -79,8 +79,18 @@
         <!-- <div id="content">
             
         </div> -->
-
-        
+        <div>
+            <span>Check below all searches you wish to download:</span>
+        </br>
+        <select id="fileFormats">
+            <option value="CSV">CSV</option>
+            <option value="JSON">JSON</option>
+            <option value="XML">XML</option>
+        </select>
+        <a id="Download" href="#" class="panel panel-default">
+            <span class="panel-body">Download</span>
+        </a>
+        </div>
         <table class="table table-bordered" id="searchResults">
         </table>
     </div>
@@ -132,13 +142,13 @@
             document.body.appendChild(JSElement);
         });
 
-
         function hndlr(response) {
             table = document.getElementById("searchResults");
             table.innerHTML = "";
             var data = '';
             for(var i=0; i<response.items.length; i++){
                 data += '<tr>';
+                data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
                 data+= '<td>';
                 data+= '<a class="results" href="' + response.items[i]['link']+'">';
                 data+= response.items[i]['title'];

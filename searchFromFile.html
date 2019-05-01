@@ -82,12 +82,16 @@
                     <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
                     <input type="submit" value="Upload Image" name="submit">
                 </form>
-
-                <!-- <input type="file" id="file" name="file"> -->
-                <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
-                <!-- <input type="submit" name="upload" id="upload"> -->
-                    <input type="submit" value="Upload Image" name="submit">
-                </form>
+                Check below all searches you wish to download:
+                </br>
+                <select id="fileFormats">
+                    <option value="CSV">CSV</option>
+                    <option value="JSON">JSON</option>
+                    <option value="XML">XML</option>
+                </select>
+                <a id="Download" href="#" class="panel panel-default">
+                    <span class="panel-body">Download</span>
+                </a>
             </span>
         </div>
         <h3>Search Results:</h3>
@@ -138,12 +142,13 @@
                     var data = '';
                     for(var i=0; i<response.length; i++){
                         data += '<tr>';
-                        data+= '<td>';
-                        data+= '<a class="results" href="' + response[i][1]+'">';
-                        data+= response[i][0];
-                        data+='</a>';
-                        data+='<p>'+response[i][2]+'</p';
-                        data+='</td>';
+                        data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
+                        data += '<td>';
+                        data += '<a class="results" href="' + response[i][1]+'">';
+                        data += response[i][0];
+                        data +='</a>';
+                        data +='<p>'+response[i][2]+'</p';
+                        data +='</td>';
                         data +='</tr>';
                     }
                     $("#searchResults").append(data);

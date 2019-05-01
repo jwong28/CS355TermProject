@@ -57,15 +57,9 @@ $(document).ready(function() {
                 var blob = new Blob([CSVInformation.join('')], {type: "text/csv"});
                 var myBlobUrl = URL.createObjectURL(blob);
                 document.getElementById("Download").href = myBlobUrl;
-                document.getElementById("Download").download = "results.txt";
+                document.getElementById("Download").download = "results.csv";
                 break;
             case 'JSON':
-                // var data = JSON.stringify(JSONInformation,
-                //     function(k,v){
-                //         if(v instanceof Array)
-                //         return JSON.stringify(v);
-                //     return v;
-                // },2);
                 var data = JSON.stringify(JSONInformation,null,'\t');
                 var blob = new Blob([data], {type: "application/json"});
                 var myBlobUrl = URL.createObjectURL(blob);
@@ -87,16 +81,3 @@ $(document).ready(function() {
         }
     });
 });
-
-// $(document).ready(function(){
-//     $('#createObject').click(function(){
-//      var ar=[];
-//         $('.song').each(function(){
-//             if($(this).is(':checked'))
-//             {
-//                 ar.push({url:$(this).attr('data'),title:$(this).attr('title')}); 
-//             }        
-//         });
-//         alert(JSON.stringify(ar));
-//       });
-//     });
