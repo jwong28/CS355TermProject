@@ -54,7 +54,7 @@ $(document).ready(function() {
     $("#Download").click(function() {
         switch(document.getElementById("fileFormats").value){
             case 'CSV' :
-                var blob = new Blob([CSVInformation.join('')], {type: "text/csv"});
+                var blob = new Blob([CSVInformation.join('')], {type: "application/vnd.ms-excel"});
                 var myBlobUrl = URL.createObjectURL(blob);
                 document.getElementById("Download").href = myBlobUrl;
                 document.getElementById("Download").download = "results.csv";
