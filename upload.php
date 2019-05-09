@@ -4,7 +4,6 @@
     $results = [];
     $val = 0;
    if ( isset($_FILES["file"])) {
-
             //if there was an error uploading the file
         if ($_FILES["file"]["error"] > 0) {
             // echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
