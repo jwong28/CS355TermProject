@@ -95,7 +95,7 @@ function crawl_page($url)
         }
 
         // Update time taken to index
-        $endtime = microtime(true); // Bottom of page
+        $endtime = microtime(true);
         $loadtime = $endtime - $starttime;
         $updatePage = "UPDATE page
             SET timeToIndex = $loadtime

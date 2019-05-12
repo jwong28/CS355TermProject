@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
+<body">
     <!-- Top header -->
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
             <a class="navbar-brand" href="#"></a>
@@ -27,7 +27,7 @@
                         Course
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019">
+                        <a class="dropdown-item" href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">
                             Zybook
                         </a>
                     </div>
@@ -42,15 +42,17 @@
                             <a class="dropdown-item" href="searchFromGoogle.html">Google API</a>
                             <a class="dropdown-item" href="searchFromOurEngine.html">Our Search Engine</a>
                         </div>
-                    </li>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Browser
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="browser.html#Browser">Browser Information</a>
-                            <a class="dropdown-item" href="browser.html#System">System Information</a>
-                            <a class="dropdown-item" href="browser.html#Website">Website Information</a>
+                        <a class="dropdown-item" href="browser.html#Navigator">Navigator</a>
+                        <a class="dropdown-item" href="browser.html#Window">Window</a>
+                        <a class="dropdown-item" href="browser.html#Screen">Screen</a>
+                        <a class="dropdown-item" href="browser.html#Location">Location</a>
+                        <a class="dropdown-item" href="browser.html#GeoLocation">Geolocation</a>
                     </div>
                 </li>
                 <li claxss="nav-item dropdown">
@@ -74,99 +76,47 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
-            <div class="w-form form-wrapper">
-                <form name="cse" id="searchbox" >
-                <input type="hidden" name="cx" value="012287142321051762589:ipngki_np_i" /><!-- Replace YOUR_CSEID with your CSE ID (!) -->
-                <input type="hidden" name="ie" value="utf-8" />
-                <input type="hidden" name="hl" value="en" />
-                <input name="q" type="text" id="searchBox" class="your-custom-field-class" />
-                <input type="button" id="searchButton" value="Search">
-                </form>
-            </div>
+    <div>
         <h3>Search Results:</h3>
-        <!-- <div id="content">
-            
-        </div> -->
-        <div>
-            <span>Check below all searches you wish to download:</span>
-        </br>
-        <select id="fileFormats">
-            <option value="CSV">CSV</option>
-            <option value="JSON">JSON</option>
-            <option value="XML">XML</option>
-        </select>
-        <a id="Download" href="#" class="panel panel-default">
-            <span class="panel-body">Download</span>
-        </a>
-        </div>
         <table class="table table-bordered" id="searchResults">
+            <tbody>
+                <tr>
+                    <td>
+                        <b>Search Date</b>
+                    </td>
+                    <td>
+                        <b>Search Terms</b>
+                    </td>
+                    <td>
+                        <b>Number of results</b>
+                    </td>
+                    <td>
+                        <b>Time to search</b>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </body>
-<!-- <script>
-        (function() {
-          var cx = '012287142321051762589:ipngki_np_i';
-          var gcse = document.createElement('script');
-          gcse.type = 'text/javascript';
-          gcse.async = true;
-          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(gcse, s);
-        })();
-      </script>
-      <gcse:search></gcse:search>
-<script src="https://apis.google.com/js/api.js"></script> -->
-<script>
-  /**
-   * Sample JavaScript code for search.cse.list
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
-
-  function loadClient() {
-    gapi.client.setApiKey("AIzaSyBqv942pzHTb7oJwgLSgvNpzQ3wCde15Ik");
-    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/customsearch/v1/rest")
-        .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  // Make sure the client is loaded before calling this method.
-  function execute() {
-    return gapi.client.search.cse.list({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-  gapi.load("client");
-</script>
-<script>
-        $("#searchButton").click(function(){
-            // console.log("button clicked");
-            id = document.getElementById('searchBox');
-            src="https://www.googleapis.com/customsearch/v1?key=AIzaSyBqv942pzHTb7oJwgLSgvNpzQ3wCde15Ik&cx=012287142321051762589:ipngki_np_i&callback=hndlr&q="+id.value;
-            var JSElement = document.createElement('script');
-            JSElement.src = src;
-            document.body.appendChild(JSElement);
-        });
-
-        function hndlr(response) {
-            table = document.getElementById("searchResults");
-            table.innerHTML = "";
-            var data = '';
-            for(var i=0; i<response.items.length; i++){
-                data += '<tr>';
-                data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
-                data+= '<td>';
-                data+= '<a class="results" href="' + response.items[i]['link']+'">';
-                data+= response.items[i]['title'];
-                data+='</a>';
-                data+='<p>'+response.items[i]['snippet']+'</p';
-                data+='</td>';
-                data +='</tr>';
+<script type="text/javascript">
+    window.onload = (function(){
+        $.ajax({
+            url:"getSearchResults.php",
+            method: "GET",
+            success: function(data){
+                var response= jQuery.parseJSON(data);
+                table = document.getElementById("searchResults");
+                var data = "";
+                for(var i=0; i<response.length; i++){
+                        data += '<tr>';
+                        data += '<td> <p>' + response[i]["searchDate"] +'</p> </td>';
+                        data += '<td> <p>' + response[i]["terms"] +'</p> </td>';
+                        data += '<td> <p>' + response[i]["count"] +'</p> </td>';
+                        data += '<td> <p>' + response[i]["timeToSearch"] +'</p> </td>';
+                        data +='</tr>';
+                }
+                $("#searchResults").append(data);
             }
-            $("#searchResults").append(data);
-        }
+        })
+    })
 </script>
-
