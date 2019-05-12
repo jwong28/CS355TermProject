@@ -75,7 +75,7 @@
                 <form id=webcrawl method="post" enctype="multipart/form-data">
                     <div class="active-purple-3 active-purple-4 mb-4">
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="URL Here">
+                            <input class="form-control" id="url" type="text" placeholder="URL Here">
                         </div> 
                     </div>
                     <input type="submit" value="Input data in table" name="submit">
@@ -88,34 +88,13 @@
             var results = [];
             var i = 0;
             e.preventDefault();
+            var urlStr = $('#url').val();
             $.ajax({
                 url:"webcrawler.php",
                 method: "POST",
-                data: new FormData(this),
-                // datatype: "json",
-                contentType: false,
-                cache: false,
-                processData: false, 
+                data: {url: urlStr},
+                datatype: "json",
                 success: function(data){
-                    // if(data === "No file selected"){
-                    //     alert(data);
-                    // }
-                    // var response= jQuery.parseJSON(data);
-                    // table = document.getElementById("searchResults");
-                    // table.innerHTML = "";
-                    // var data = '';
-                    // for(var i=0; i<response.length; i++){
-                    //     data += '<tr>';
-                    //     data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
-                    //     data += '<td>';
-                    //     data += '<a class="results" href="' + response[i][1]+'">';
-                    //     data += response[i][0];
-                    //     data +='</a>';
-                    //     data +='<p>'+response[i][2]+'</p';
-                    //     data +='</td>';
-                    //     data +='</tr>';
-                    // }
-                    // $("#searchResults").append(data);
                     console.log(data);
                 }
             })
