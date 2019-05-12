@@ -1,57 +1,115 @@
 <?php
 
-function OpenCon()
- {
- $dbhost = "woje0489";
- $dbuser = "root";
- $dbpass = "23050489";
- $db = "woje0489";
- $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
- echo "COnnected";
- 
- return $conn;
- }
- 
-function CloseCon($conn)
- {
- $conn -> close();
- }
-
-function crawl_page($url, $depth = 5)
+function crawl_page($url)
 {
-    static $seen = array();
-    if (isset($seen[$url]) || $depth === 0) {
-        return;
-    }
-
-    $seen[$url] = true;
+    $dbhost = "149.4.211.180";
+    $dbuser = "woje0489";
+    $dbpass = "23050489";
+    $db = "woje0489";
+    $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+ 
+    $starttime = microtime(true);
 
     $dom = new DOMDocument('1.0');
     @$dom->loadHTMLFile($url);
 
     $anchors = $dom->getElementsByTagName('a');
-    foreach ($anchors as $element) {
-        $href = $element->getAttribute('href');
-        if (0 !== strpos($href, 'http')) {
-            $path = '/' . ltrim($href, '/');
-            if (extension_loaded('http')) {
-                $href = http_build_url($url, array('path' => $path));
-            } else {
-                $parts = parse_url($url);
-                $href = $parts['scheme'] . '://';
-                if (isset($parts['user']) && isset($parts['pass'])) {
-                    $href .= $parts['user'] . ':' . $parts['pass'] . '@';
+    $nodes = $dom->getElementsByTagName('title');
+    //get and display what you need:
+    $title = strval($nodes->item(0)->nodeValue);
+
+    $metas = $dom->getElementsByTagName('meta');
+    $metaAr = [];
+    for ($i = 0; $i < $metas->length; $i++)
+    {
+        $meta = $metas->item($i);
+        // echo $meta;
+        $metaAr = $meta;
+        if($meta->getAttribute('name') == 'description')
+            $description = strval($meta->getAttribute('content'));
+            
+        if($meta->getAttribute('name') == 'keywords')
+            $keywords = $meta->getAttribute('content');
+    }
+
+    $ps = $dom->getElementsByTagName('p');
+    $parray = [];
+
+    
+    //Index page
+
+    $result = $conn->query("SELECT pageId FROM page WHERE url = '$url'");
+    if($result->num_rows == 0) {
+        //page never indexed
+        $insertPage = "INSERT INTO page (url, title, description, timeToIndex)
+            VALUES ('$url', '$title', '$description', 0)";
+        mysqli_query($conn, $insertPage);
+
+        //Index word and pageword together
+        //Get page id
+        $pageQuery = $conn->query("SELECT pageId FROM page WHERE url = '$url'");
+        $pageRow = $pageQuery->fetch_assoc();
+        $pageId = $pageRow["pageId"];
+        foreach($ps as $element){
+            $text = $element->textContent;
+            if(trim($text) != ""){
+                $words = explode(" ", $text);
+                foreach($words as $word){
+                    if(trim($word) != ""){
+                        $word = '"' . $word . '"';
+                        $wordResult = $conn->query("SELECT wordId FROM word WHERE wordName = $word");
+                        if($wordResult->num_rows == 0) {
+                            $insertWord = "INSERT INTO word (wordName)
+                                VALUES ($word)";
+                            mysqli_query($conn, $insertWord);
+                        }
+                        // pageword part
+                        // Get the word id for comparison
+                        $wordQuery = $conn->query("SELECT wordId FROM word WHERE wordName = $word");
+                        if($wordQuery->num_rows == 0) {
+                            //Word isn't in table, something is wrong with escaped char
+                        }
+                        else {
+                            $wordRow = $wordQuery->fetch_assoc();
+                            $wordId = $wordRow["wordId"];
+                            // Query for page word
+                            $pageWordResult = $conn->query(
+                                    "SELECT pageId, wordId  FROM page_word 
+                                    WHERE pageId = '$pageId' AND wordId = '$wordId'");
+                            // If not in table yet, add
+                            if($pageWordResult->num_rows == 0){
+                                $insertPageWord = "INSERT INTO page_word (pageId, wordId, freq)
+                                    VALUES ('$pageId','$wordId', 1)";
+                            }
+                            //else is in table, incr
+                            else {
+                                $insertPageWord = "UPDATE page_word
+                                    SET freq = freq + 1
+                                    WHERE pageId = '$pageId' AND wordId = '$wordId'";
+                            }
+                            mysqli_query($conn, $insertPageWord);
+                        }  
+                    }
                 }
-                $href .= $parts['host'];
-                if (isset($parts['port'])) {
-                    $href .= ':' . $parts['port'];
-                }
-                $href .= dirname($parts['path'], 1).$path;
             }
         }
-        crawl_page($href, $depth - 1);
+
+        // Update time taken to index
+        $endtime = microtime(true); // Bottom of page
+        $loadtime = $endtime - $starttime;
+        $updatePage = "UPDATE page
+            SET timeToIndex = $loadtime
+            WHERE url = '$url'";
+        mysqli_query($conn, $updatePage);
     }
-    echo "URL:",$url,PHP_EOL,"CONTENT:",PHP_EOL,$dom->saveHTML(),PHP_EOL,PHP_EOL;
+    else {
+        echo "row already exists";
+    }
+
+    $conn -> close();
 }
-crawl_page("https://www.google.com/", 2);
-// openCon();
+
+
+crawl_page($_POST['url']);
+echo "Indexed ",$_POST['url'];
+]
