@@ -112,4 +112,4 @@ function crawl_page($url)
 
 crawl_page($_POST['url']);
 echo "Indexed ",$_POST['url'];
-]
+

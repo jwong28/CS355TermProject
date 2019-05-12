@@ -40,7 +40,7 @@
                             <a class="dropdown-item" href="searchFixedList.html">Fixed List</a>
                             <a class="dropdown-item" href="searchFromFile.html">From File</a>
                             <a class="dropdown-item" href="searchFromGoogle.html">Google API</a>
-                            <a class="dropdown-item" href="#">Our Search Engine</a>
+                            <a class="dropdown-item" href="searchFromOurEngine.html">Our Search Engine</a>
                             <a class="dropdown-item" href="indexEngine.html">Index Engine</a>
                         </div>
                     </li>
@@ -72,16 +72,13 @@
         <div class="row">
             <span class="col-md-1 col-lg-1"></span>
             <span class="col-md-9 col-lg-9">
-                <form id=uploadFile method="post" enctype="multipart/form-data">
+                <form id=webcrawl method="post" enctype="multipart/form-data">
                     <div class="active-purple-3 active-purple-4 mb-4">
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Best foods in NYC" readonly>
+                            <input class="form-control" id="search" type="text" placeholder="Search term(s)">
                         </div> 
                     </div>
-                    Select file to upload:
-                    <input type="file" id="file" name="file">
-                    <!-- <button id="upload" onclick="uploadFile()">Upload</button> -->
-                    <input type="submit" value="Upload File" name="submit">
+                    <input type="submit" value="Input data in table" name="submit">
                 </form>
                 Check below all searches you wish to download:
                 </br>
@@ -104,39 +101,38 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#uploadFile').on('submit',function(e){
+        $('#webcrawl').on('submit',function(e){
             var results = [];
             var i = 0;
             e.preventDefault();
+            var search = $('#search').val();
             $.ajax({
-                url:"upload.php",
+                url:"searchDatabase.php",
                 method: "POST",
-                data: new FormData(this),
+                data: {search: search},
                 datatype: "json",
-                contentType: false,
-                cache: false,
-                processData: false, 
                 success: function(data){
-                    if(data === "No file selected"){
-                        alert(data);
-                    }
                     var response= jQuery.parseJSON(data);
                     table = document.getElementById("searchResults");
                     table.innerHTML = "";
                     var data = '';
+                    var urlArr = [response.length];
                     for(var i=0; i<response.length; i++){
-                        data += '<tr>';
-                        data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
-                        data += '<td>';
-                        data += '<a class="results" href="' + response[i][1]+'">';
-                        data += response[i][0];
-                        data +='</a>';
-                        data +='<p>'+response[i][2]+'</p';
-                        data +='</td>';
-                        data +='</tr>';
+                        if(!urlArr.includes(response[i]["url"])){
+                            urlArr[i] = response[i]["url"];
+                            data += '<tr>';
+                            data += '<td> <input type="checkbox" class="checkbox" form="download"> </td>';
+                            data += '<td>';
+                            data += '<a class="results" href="' + response[i]["url"]+'">';
+                            data += response[i]["title"];
+                            data +='</a>';
+                            data +='<p>'+response[i]["description"]+'</p';
+                            data +='</td>';
+                            data +='</tr>';
+                        }
+
                     }
                     $("#searchResults").append(data);
-
                 }
             })
         });
