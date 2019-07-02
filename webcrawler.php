@@ -2,10 +2,10 @@
 
 function crawl_page($url)
 {
-    $dbhost = "149.4.211.180";
-    $dbuser = "woje0489";
-    $dbpass = "23050489";
-    $db = "woje0489";
+    $dbhost = DbHost;
+    $dbuser = Username;
+    $dbpass = Password;
+    $db = Username;
     $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
  
     $starttime = microtime(true);
