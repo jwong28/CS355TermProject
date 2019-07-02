@@ -3,10 +3,10 @@
 function getResults($terms)
 {
     //0 is none, 1 is case, 2 is partial, 3 is both
-    $dbhost = "149.4.211.180";
-    $dbuser = "woje0489";
-    $dbpass = "23050489";
-    $db = "woje0489";
+    $dbhost = DbHost;
+    $dbuser = Username;
+    $dbpass = Password;
+    $db = Username;
     $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
 
     $results = array();
